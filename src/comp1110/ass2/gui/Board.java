@@ -15,6 +15,7 @@ public class Board extends Application {
 
     // FIXME Task 11: Generate interesting starting placements
 
+    // Try push
     @Override
     public void start(Stage primaryStage) throws Exception {
 
