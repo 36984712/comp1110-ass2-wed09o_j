@@ -22,18 +22,15 @@ public class StepsGame {
      */
     static boolean isPiecePlacementWellFormed(String piecePlacement) {
         // FIXME Task 2: determine whether a piece placement is well-formed
-        int pieceCharAscill;
-        pieceCharAscill = (int)piecePlacement.charAt(0);
-        if (pieceCharAscill<65||pieceCharAscill>72)
+        int pieceCharAscii;
+        pieceCharAscii = (int)piecePlacement.charAt(0);
+        if (pieceCharAscii<65||pieceCharAscii>72)
             return false;
-        pieceCharAscill = (int)piecePlacement.charAt(1);
-        if (pieceCharAscill<65||pieceCharAscill>72)
+        pieceCharAscii = (int)piecePlacement.charAt(1);
+        if (pieceCharAscii<65||pieceCharAscii>72)
             return false;
-        pieceCharAscill = (int)piecePlacement.charAt(2);
-        if ((pieceCharAscill>=65&&pieceCharAscill<=89)||(pieceCharAscill>=97&&pieceCharAscill<=121))
-            return true;
-        else
-            return false;
+        pieceCharAscii = (int)piecePlacement.charAt(2);
+        return (pieceCharAscii>=65&&pieceCharAscii<=89)||(pieceCharAscii>=97&&pieceCharAscii<=121);
     }
 
     /**
@@ -47,7 +44,7 @@ public class StepsGame {
      */
     static boolean isPlacementWellFormed(String placement) {
         // FIXME Task 3: determine whether a placement is well-formed
-        
+
         return false;
     }
 
