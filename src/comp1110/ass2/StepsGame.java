@@ -44,8 +44,28 @@ public class StepsGame {
      */
     static boolean isPlacementWellFormed(String placement) {
         // FIXME Task 3: determine whether a placement is well-formed
-
-        return false;
+        // It is empty
+        if (placement==null||placement=="")
+            return false;
+        if (placement.length()%3!=0)
+            return false;
+        //Loop to show every element is in the range
+        for(int i=0;i<placement.length();i++){
+            if ((i%3==0||i%3==1) && ((int)placement.charAt(i)<65||(int)placement.charAt(i)>72))
+                return false;
+            if (i%3==2 && ((int)placement.charAt(i)<65||(int)placement.charAt(i)>89)&&
+                    ((int)placement.charAt(i)<97||(int)placement.charAt(i)>121))
+                return false;
+        }
+        //Loop for recognise the same items
+        for (int i=0;i<placement.length()/3-1;i++)
+            for (int j=i+1;j<placement.length()/3;j++){
+                if (placement.charAt(i*3)==placement.charAt(j*3)&&
+                        placement.charAt(i*3+1)==placement.charAt(j*3+1)&&
+                        placement.charAt(i*3+2)==placement.charAt(j*3+2))
+                    return false;
+            }
+        return true;
     }
 
     /**
