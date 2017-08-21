@@ -22,7 +22,25 @@ public class StepsGame {
      */
     static boolean isPiecePlacementWellFormed(String piecePlacement) {
         // FIXME Task 2: determine whether a piece placement is well-formed
-        return false;
+        boolean boo=false;
+        boolean isWord=piecePlacement.matches("[a-zA-Z]+");
+        if(isWord){
+            if(piecePlacement.length()==3){
+                byte a=(byte)piecePlacement.charAt(0);
+                byte b=(byte)piecePlacement.charAt(1);
+                byte c=(byte)piecePlacement.charAt(2);
+                if(a>='A'&& a<='H'){
+                    if(b>='A'&& b<='H'){
+                        if(c>='A'&& c<='Y'){
+                            boo= true;
+                        }else if(c>='a'&& c<='y'){
+                            boo= true;
+                        }
+                    }
+                }
+            }
+        }
+        return boo;
     }
 
     /**
