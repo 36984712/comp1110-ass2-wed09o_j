@@ -54,7 +54,69 @@ public class StepsGame {
      */
     static boolean isPlacementWellFormed(String placement) {
         // FIXME Task 3: determine whether a placement is well-formed
-        return false;
+        if(placement==""||placement==null){
+            return false;
+        }
+        boolean boo=false;
+        boolean isWord=placement.matches("[a-zA-Z]+");
+        int l=placement.length();
+        char[][]ch=new char[l/3][3];
+        byte a;
+        byte b;
+        byte c;
+        if(l>=1 & l<=24){
+            if(l%3==0){
+                if(isWord){
+                    for(int i=0;i<(l/3);i++){
+                        for(int m=0;m<3;m++){
+                            ch[i][m]=placement.charAt((i*3+m));
+                        }
+                    }
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+        for(int i=0;i<(l/3);i++){
+            a=(byte)ch[i][0];
+            b=(byte)ch[i][1];
+            c=(byte)ch[i][2];
+            if(a>='A'&& a<='H'){
+                if(b>='A'&& b<='H'){
+                    if(c>='A'&& c<='Y'){
+                        boo= true;
+                    }else if(c>='a'&& c<='y'){
+                        boo= true;
+                    }else{
+                        boo=false;
+                    }
+                }else{
+                    boo=false;
+                }
+            }else{
+                boo=false;
+            }
+            if(boo==false){
+                return false;
+            }
+        }
+
+        if((l/3)>1){
+            for(int i=1;i<(l/3);i++){
+                for(int m=1;m<(l/3);m++){
+                    if(i==m){
+                        continue;
+                    }else if(ch[i][0]==ch[m][0]){
+                        boo=false;
+                    }
+                }
+            }
+        }
+        return boo;
     }
 
     /**
