@@ -22,25 +22,15 @@ public class StepsGame {
      */
     static boolean isPiecePlacementWellFormed(String piecePlacement) {
         // FIXME Task 2: determine whether a piece placement is well-formed
-        boolean boo=false;
-        boolean isWord=piecePlacement.matches("[a-zA-Z]+");
-        if(isWord){
-            if(piecePlacement.length()==3){
-                byte a=(byte)piecePlacement.charAt(0);
-                byte b=(byte)piecePlacement.charAt(1);
-                byte c=(byte)piecePlacement.charAt(2);
-                if(a>='A'&& a<='H'){
-                    if(b>='A'&& b<='H'){
-                        if(c>='A'&& c<='Y'){
-                            boo= true;
-                        }else if(c>='a'&& c<='y'){
-                            boo= true;
-                        }
-                    }
-                }
-            }
-        }
-        return boo;
+        int pieceCharAscii;
+        pieceCharAscii = (int)piecePlacement.charAt(0);
+        if (pieceCharAscii<65||pieceCharAscii>72)
+            return false;
+        pieceCharAscii = (int)piecePlacement.charAt(1);
+        if (pieceCharAscii<65||pieceCharAscii>72)
+            return false;
+        pieceCharAscii = (int)piecePlacement.charAt(2);
+        return (pieceCharAscii>=65&&pieceCharAscii<=89)||(pieceCharAscii>=97&&pieceCharAscii<=121);
     }
 
     /**
@@ -54,69 +44,28 @@ public class StepsGame {
      */
     static boolean isPlacementWellFormed(String placement) {
         // FIXME Task 3: determine whether a placement is well-formed
-        if(placement==""||placement==null){
+        // It is empty
+        if (placement==null||placement=="")
             return false;
+        if (placement.length()%3!=0)
+            return false;
+        //Loop to show every element is in the range
+        for(int i=0;i<placement.length();i++){
+            if ((i%3==0||i%3==1) && ((int)placement.charAt(i)<65||(int)placement.charAt(i)>72))
+                return false;
+            if (i%3==2 && ((int)placement.charAt(i)<65||(int)placement.charAt(i)>89)&&
+                    ((int)placement.charAt(i)<97||(int)placement.charAt(i)>121))
+                return false;
         }
-        boolean boo=false;
-        boolean isWord=placement.matches("[a-zA-Z]+");
-        int l=placement.length();
-        char[][]ch=new char[l/3][3];
-        byte a;
-        byte b;
-        byte c;
-        if(l>=1 & l<=24){
-            if(l%3==0){
-                if(isWord){
-                    for(int i=0;i<(l/3);i++){
-                        for(int m=0;m<3;m++){
-                            ch[i][m]=placement.charAt((i*3+m));
-                        }
-                    }
-                }else{
+        //Loop for recognise the same items
+        for (int i=0;i<placement.length()/3-1;i++)
+            for (int j=i+1;j<placement.length()/3;j++){
+                if (placement.charAt(i*3)==placement.charAt(j*3)&&
+                        placement.charAt(i*3+1)==placement.charAt(j*3+1)&&
+                        placement.charAt(i*3+2)==placement.charAt(j*3+2))
                     return false;
-                }
-            }else{
-                return false;
             }
-        }else{
-            return false;
-        }
-        for(int i=0;i<(l/3);i++){
-            a=(byte)ch[i][0];
-            b=(byte)ch[i][1];
-            c=(byte)ch[i][2];
-            if(a>='A'&& a<='H'){
-                if(b>='A'&& b<='H'){
-                    if(c>='A'&& c<='Y'){
-                        boo= true;
-                    }else if(c>='a'&& c<='y'){
-                        boo= true;
-                    }else{
-                        boo=false;
-                    }
-                }else{
-                    boo=false;
-                }
-            }else{
-                boo=false;
-            }
-            if(boo==false){
-                return false;
-            }
-        }
-
-        if((l/3)>1){
-            for(int i=1;i<(l/3);i++){
-                for(int m=1;m<(l/3);m++){
-                    if(i==m){
-                        continue;
-                    }else if(ch[i][0]==ch[m][0]){
-                        boo=false;
-                    }
-                }
-            }
-        }
-        return boo;
+        return true;
     }
 
     /**
