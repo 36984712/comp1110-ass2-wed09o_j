@@ -291,7 +291,6 @@ public class Viewer extends Application {
             @Override
             public void handle(KeyEvent event) {
                 if(event.getCode()==KeyCode.ENTER){
-                    System.out.println(textField.getText());
                     makePlacement(textField.getText());
                     if(shapes=='A'){
                         if((int)orientations>=65&&(int)orientations<=68){
