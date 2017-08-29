@@ -74,6 +74,7 @@ public class Viewer extends Application {
             public void handle(ActionEvent e) {
                 makePlacement(textField.getText());
                 textField.clear();
+                root.getChildren().remove(27,root.getChildren().size());
             }
         });
         HBox hb = new HBox();
