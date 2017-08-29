@@ -141,7 +141,7 @@ public class StepsGame {
         // location variable record the piece placement on whole board
         int[] location = new int[50];
 
-        for (int i=0;i<placement.length()/3-1;i++){
+        for (int i=0;i<=placement.length()/3-1;i++){
             // twice test
             for (int j=i+1;j<placement.length()/3;j++){
                 if (placement.charAt(i*3)==placement.charAt(j*3))
@@ -196,7 +196,8 @@ public class StepsGame {
                             return false;
                 }
             }
-
+            if (i == placement.length()/3-1)
+                continue;
             // Decide can the new piece can put in the board
             String piecePlacementNew = String.valueOf(placement.charAt((i+1)*3))+String.valueOf(placement.charAt((i+1)*3+1))+
                     String.valueOf(placement.charAt((i+1)*3+2));
@@ -209,9 +210,6 @@ public class StepsGame {
                 positionNew = (int)piecePlacementNew.charAt(2)-97+25;
 
             if(!isPiecePlacementWellFormed(piecePlacementNew))
-                return false;
-
-            if (!isValidPlacement(piecePlacementNew,positionNew))
                 return false;
 
             // Recognise the up-lay and the low-lay whether it is same place
