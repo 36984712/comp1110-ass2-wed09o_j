@@ -1,5 +1,6 @@
 package comp1110.ass2.gui;
 
+import comp1110.ass2.StepsGame;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,10 +30,10 @@ import java.io.FileNotFoundException;
  * placements.
  */
 public class Viewer extends Application {
-    char shapes;
-    char orientations;
-    char locations;
-
+    //char shapes;
+    //char orientations;
+    //char locations;
+    private String placement;
 
     /* board layout */
     private static final int SQUARE_SIZE = 60;
@@ -44,6 +45,7 @@ public class Viewer extends Application {
 
     private final Group root = new Group();
     private final Group controls = new Group();
+    private Group pieces = new Group();
     TextField textField;
 
 
@@ -54,9 +56,7 @@ public class Viewer extends Application {
      */
     void makePlacement(String placement) {
         // FIXME Task 4: implement the simple placement viewer
-        this.shapes=placement.charAt(0);
-        this.orientations=placement.charAt(1);
-        this.locations=placement.charAt(2);
+        this.placement = placement;
 
     }
 
@@ -74,7 +74,7 @@ public class Viewer extends Application {
             public void handle(ActionEvent e) {
                 makePlacement(textField.getText());
                 textField.clear();
-                root.getChildren().remove(27,28);
+                pieces.getChildren().clear();
             }
         });
         HBox hb = new HBox();
@@ -85,6 +85,932 @@ public class Viewer extends Application {
         controls.getChildren().add(hb);
     }
 
+    public void changePieces(Group pieces, char shapes, char orientations, char locations){
+        //char shapes = piecesPlace.charAt(0);
+        //char orientations = piecesPlace.charAt(1);
+        //char locations = piecesPlace.charAt(2);
+        if(shapes=='A'){
+            if((int)orientations>=65&&(int)orientations<=68){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/AA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/AA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/AA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/AA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/AA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121){
+                    Image image=new Image("comp1110/ass2/gui/assets/AA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-112)*50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+
+            }else if((int)orientations>=69&&(int)orientations<=72){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/AE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/AE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/AE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/AE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/AE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121) {
+                    Image image = new Image("comp1110/ass2/gui/assets/AE.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setRotate((((int) orientations) - 65) * 90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25 + ((int) locations - 112) * 50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+            }
+        }else if(shapes=='B'){
+            if((int)orientations>=65&&(int)orientations<=68){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/BA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/BA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/BA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/BA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/BA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121){
+                    Image image=new Image("comp1110/ass2/gui/assets/BA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-112)*50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+
+            }else if((int)orientations>=69&&(int)orientations<=72){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/BE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/BE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/BE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/BE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/BE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121) {
+                    Image image = new Image("comp1110/ass2/gui/assets/BE.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setRotate((((int) orientations) - 65) * 90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25 + ((int) locations - 112) * 50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+            }
+        }else if(shapes=='C'){
+            if((int)orientations>=65&&(int)orientations<=68){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/CA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/CA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/CA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/CA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/CA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121){
+                    Image image=new Image("comp1110/ass2/gui/assets/CA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-112)*50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+
+            }else if((int)orientations>=69&&(int)orientations<=72){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/CE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/CE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/CE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/CE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/CE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121) {
+                    Image image = new Image("comp1110/ass2/gui/assets/CE.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setRotate((((int) orientations) - 65) * 90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25 + ((int) locations - 112) * 50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+            }
+        }else if(shapes=='D'){
+            if((int)orientations>=65&&(int)orientations<=68){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/DA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/DA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/DA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/DA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/DA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121){
+                    Image image=new Image("comp1110/ass2/gui/assets/DA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-112)*50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+
+            }else if((int)orientations>=69&&(int)orientations<=72){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/DE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/DE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/DE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/DE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/DE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121) {
+                    Image image = new Image("comp1110/ass2/gui/assets/DE.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setRotate((((int) orientations) - 65) * 90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25 + ((int) locations - 112) * 50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+            }
+        }else if(shapes=='E'){
+            if((int)orientations>=65&&(int)orientations<=68){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/EA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/EA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/EA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/EA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/EA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121){
+                    Image image=new Image("comp1110/ass2/gui/assets/EA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-112)*50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+
+            }else if((int)orientations>=69&&(int)orientations<=72){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/EE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/EE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/EE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/EE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/EE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121) {
+                    Image image = new Image("comp1110/ass2/gui/assets/EE.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setRotate((((int) orientations) - 65) * 90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25 + ((int) locations - 112) * 50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+            }
+        }else if(shapes=='F'){
+            if((int)orientations>=65&&(int)orientations<=68){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/FA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/FA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/FA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/FA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/FA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121){
+                    Image image=new Image("comp1110/ass2/gui/assets/FA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-112)*50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+
+            }else if((int)orientations>=69&&(int)orientations<=72){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/FE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/FE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/FE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/FE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/FE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121) {
+                    Image image = new Image("comp1110/ass2/gui/assets/FE.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setRotate((((int) orientations) - 65) * 90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25 + ((int) locations - 112) * 50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+            }
+        }else if(shapes=='G'){
+            if((int)orientations>=65&&(int)orientations<=68){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/GA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/GA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/GA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/GA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/GA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121){
+                    Image image=new Image("comp1110/ass2/gui/assets/GA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-112)*50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+
+            }else if((int)orientations>=69&&(int)orientations<=72){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/GE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/GE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/GE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/GE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/GE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121) {
+                    Image image = new Image("comp1110/ass2/gui/assets/GE.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setRotate((((int) orientations) - 65) * 90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25 + ((int) locations - 112) * 50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+            }
+        }else if(shapes=='H'){
+            if((int)orientations>=65&&(int)orientations<=68){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/HA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/HA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/HA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/HA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/HA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121){
+                    Image image=new Image("comp1110/ass2/gui/assets/HA.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-112)*50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+
+            }else if((int)orientations>=69&&(int)orientations<=72){
+                if((int)locations>=65&&(int)locations<=74){
+                    Image image=new Image("comp1110/ass2/gui/assets/HE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-65)*50);
+                    imageView.setY(25);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=75&&(int)locations<=84){
+                    Image image=new Image("comp1110/ass2/gui/assets/HE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-75)*50);
+                    imageView.setY(75);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=85&&(int)locations<=89){
+                    Image image=new Image("comp1110/ass2/gui/assets/HE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-85)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=97&&(int)locations<=101){
+                    Image image=new Image("comp1110/ass2/gui/assets/HE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(275+((int)locations-97)*50);
+                    imageView.setY(125);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=102&&(int)locations<=111){
+                    Image image=new Image("comp1110/ass2/gui/assets/HE.png");
+                    ImageView imageView=new ImageView(image);
+                    imageView.setRotate((((int)orientations)-65)*90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25+((int)locations-102)*50);
+                    imageView.setY(175);
+                    pieces.getChildren().add(imageView);
+                }else if((int)locations>=112&&(int)locations<=121) {
+                    Image image = new Image("comp1110/ass2/gui/assets/HE.png");
+                    ImageView imageView = new ImageView(image);
+                    imageView.setRotate((((int) orientations) - 65) * 90);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    imageView.setX(25 + ((int) locations - 112) * 50);
+                    imageView.setY(225);
+                    pieces.getChildren().add(imageView);
+                }
+            }
+        }
+    }
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("StepsGame Viewer");
@@ -293,927 +1219,16 @@ public class Viewer extends Application {
             public void handle(KeyEvent event) {
                 if(event.getCode()==KeyCode.ENTER){
                     makePlacement(textField.getText());
-                    if(shapes=='A'){
-                        if((int)orientations>=65&&(int)orientations<=68){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/AA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/AA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/AA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/AA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/AA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121){
-                                Image image=new Image("comp1110/ass2/gui/assets/AA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-112)*50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-
-                        }else if((int)orientations>=69&&(int)orientations<=72){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/AE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/AE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/AE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/AE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/AE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121) {
-                                Image image = new Image("comp1110/ass2/gui/assets/AE.png");
-                                ImageView imageView = new ImageView(image);
-                                imageView.setRotate((((int) orientations) - 65) * 90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25 + ((int) locations - 112) * 50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
+                    //if (StepsGame.isPlacementSequenceValid(placement)) {
+                        //pieces.getChildren().clear();
+                        for (int i = 0; i < (placement.length() / 3); i++) {
+                            for (int j = 0; j < 3; j++) {
+                                changePieces(pieces, placement.charAt(i * 3), placement.charAt(i * 3 + 1), placement.charAt(i * 3 + 2));
                             }
                         }
-                    }else if(shapes=='B'){
-                        if((int)orientations>=65&&(int)orientations<=68){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/BA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/BA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/BA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/BA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/BA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121){
-                                Image image=new Image("comp1110/ass2/gui/assets/BA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-112)*50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
+                        root.getChildren().add(pieces);
+                    //}
 
-                        }else if((int)orientations>=69&&(int)orientations<=72){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/BE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/BE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/BE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/BE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/BE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121) {
-                                Image image = new Image("comp1110/ass2/gui/assets/BE.png");
-                                ImageView imageView = new ImageView(image);
-                                imageView.setRotate((((int) orientations) - 65) * 90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25 + ((int) locations - 112) * 50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-                        }
-                    }else if(shapes=='C'){
-                        if((int)orientations>=65&&(int)orientations<=68){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/CA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/CA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/CA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/CA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/CA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121){
-                                Image image=new Image("comp1110/ass2/gui/assets/CA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-112)*50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-
-                        }else if((int)orientations>=69&&(int)orientations<=72){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/CE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/CE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/CE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/CE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/CE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121) {
-                                Image image = new Image("comp1110/ass2/gui/assets/CE.png");
-                                ImageView imageView = new ImageView(image);
-                                imageView.setRotate((((int) orientations) - 65) * 90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25 + ((int) locations - 112) * 50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-                        }
-                    }else if(shapes=='D'){
-                        if((int)orientations>=65&&(int)orientations<=68){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/DA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/DA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/DA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/DA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/DA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121){
-                                Image image=new Image("comp1110/ass2/gui/assets/DA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-112)*50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-
-                        }else if((int)orientations>=69&&(int)orientations<=72){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/DE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/DE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/DE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/DE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/DE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121) {
-                                Image image = new Image("comp1110/ass2/gui/assets/DE.png");
-                                ImageView imageView = new ImageView(image);
-                                imageView.setRotate((((int) orientations) - 65) * 90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25 + ((int) locations - 112) * 50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-                        }
-                    }else if(shapes=='E'){
-                        if((int)orientations>=65&&(int)orientations<=68){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/EA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/EA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/EA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/EA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/EA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121){
-                                Image image=new Image("comp1110/ass2/gui/assets/EA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-112)*50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-
-                        }else if((int)orientations>=69&&(int)orientations<=72){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/EE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/EE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/EE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/EE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/EE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121) {
-                                Image image = new Image("comp1110/ass2/gui/assets/EE.png");
-                                ImageView imageView = new ImageView(image);
-                                imageView.setRotate((((int) orientations) - 65) * 90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25 + ((int) locations - 112) * 50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-                        }
-                    }else if(shapes=='F'){
-                        if((int)orientations>=65&&(int)orientations<=68){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/FA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/FA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/FA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/FA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/FA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121){
-                                Image image=new Image("comp1110/ass2/gui/assets/FA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-112)*50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-
-                        }else if((int)orientations>=69&&(int)orientations<=72){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/FE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/FE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/FE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/FE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/FE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121) {
-                                Image image = new Image("comp1110/ass2/gui/assets/FE.png");
-                                ImageView imageView = new ImageView(image);
-                                imageView.setRotate((((int) orientations) - 65) * 90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25 + ((int) locations - 112) * 50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-                        }
-                    }else if(shapes=='G'){
-                        if((int)orientations>=65&&(int)orientations<=68){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/GA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/GA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/GA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/GA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/GA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121){
-                                Image image=new Image("comp1110/ass2/gui/assets/GA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-112)*50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-
-                        }else if((int)orientations>=69&&(int)orientations<=72){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/GE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/GE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/GE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/GE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/GE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121) {
-                                Image image = new Image("comp1110/ass2/gui/assets/GE.png");
-                                ImageView imageView = new ImageView(image);
-                                imageView.setRotate((((int) orientations) - 65) * 90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25 + ((int) locations - 112) * 50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-                        }
-                    }else if(shapes=='H'){
-                        if((int)orientations>=65&&(int)orientations<=68){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/HA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/HA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/HA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/HA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/HA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121){
-                                Image image=new Image("comp1110/ass2/gui/assets/HA.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-112)*50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-
-                        }else if((int)orientations>=69&&(int)orientations<=72){
-                            if((int)locations>=65&&(int)locations<=74){
-                                Image image=new Image("comp1110/ass2/gui/assets/HE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-65)*50);
-                                imageView.setY(25);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=75&&(int)locations<=84){
-                                Image image=new Image("comp1110/ass2/gui/assets/HE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-75)*50);
-                                imageView.setY(75);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=85&&(int)locations<=89){
-                                Image image=new Image("comp1110/ass2/gui/assets/HE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-85)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=97&&(int)locations<=101){
-                                Image image=new Image("comp1110/ass2/gui/assets/HE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(275+((int)locations-97)*50);
-                                imageView.setY(125);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=102&&(int)locations<=111){
-                                Image image=new Image("comp1110/ass2/gui/assets/HE.png");
-                                ImageView imageView=new ImageView(image);
-                                imageView.setRotate((((int)orientations)-65)*90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25+((int)locations-102)*50);
-                                imageView.setY(175);
-                                root.getChildren().add(imageView);
-                            }else if((int)locations>=112&&(int)locations<=121) {
-                                Image image = new Image("comp1110/ass2/gui/assets/HE.png");
-                                ImageView imageView = new ImageView(image);
-                                imageView.setRotate((((int) orientations) - 65) * 90);
-                                imageView.setFitHeight(200);
-                                imageView.setFitWidth(200);
-                                imageView.setX(25 + ((int) locations - 112) * 50);
-                                imageView.setY(225);
-                                root.getChildren().add(imageView);
-                            }
-                        }
-                    }
                 }
             }
         });

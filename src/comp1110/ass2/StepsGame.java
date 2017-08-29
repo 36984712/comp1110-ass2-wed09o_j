@@ -76,7 +76,7 @@ public class StepsGame {
      * @param placement A placement sequence string
      * @return True if the placement sequence is valid
      */
-    static boolean isPlacementSequenceValid(String placement) {
+    public static boolean isPlacementSequenceValid(String placement) {
         // FIXME Task 5: determine whether a placement sequence is valid
         boolean b1=true;
         boolean b2=false;
