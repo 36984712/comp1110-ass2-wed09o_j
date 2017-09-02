@@ -1221,19 +1221,22 @@ public class Viewer extends Application {
                     makePlacement(textField.getText());
                     //if (StepsGame.isPlacementSequenceValid(placement)) {
                         //pieces.getChildren().clear();
-                        for (int i = 0; i < (placement.length() / 3); i++) {
+
+                    for (int i = 0; i < (placement.length() / 3); i++) {
                             for (int j = 0; j < 3; j++) {
                                 changePieces(pieces, placement.charAt(i * 3), placement.charAt(i * 3 + 1), placement.charAt(i * 3 + 2));
                             }
                         }
-                        root.getChildren().add(pieces);
+
+
+                    //root.getChildren().add(pieces);
                     //}
 
                 }
             }
         });
 
-
+        root.getChildren().add(pieces);
         primaryStage.show();
     }
 
