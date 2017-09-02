@@ -85,7 +85,7 @@ public class Viewer extends Application {
         controls.getChildren().add(hb);
     }
 
-    public void changePieces(Group pieces, char shapes, char orientations, char locations){
+    public void changePieces(Group root, char shapes, char orientations, char locations){
         //char shapes = piecesPlace.charAt(0);
         //char orientations = piecesPlace.charAt(1);
         //char locations = piecesPlace.charAt(2);
