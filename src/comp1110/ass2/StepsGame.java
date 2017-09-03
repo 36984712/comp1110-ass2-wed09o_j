@@ -222,6 +222,12 @@ public class StepsGame {
                             return false;
                         else if (location[j+positionNew-11]==-1 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]==-1)
                             return false;
+                        if (j+positionNew-11>10 && j+positionNew-11>(Math.floor(positionNew/10)-1)*10 && positionNew-11+j<Math.floor(positionNew/10)*10-1){
+                            if (location[j+positionNew-21]==1 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]!=0)
+                                return false;
+                            else if (location[j+positionNew-21]==-1 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]==-1)
+                                return false;
+                        }
                     }
                     else if (positionNew-11+j<0 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]!=0)
                         return false;
@@ -232,6 +238,12 @@ public class StepsGame {
                             return false;
                         else if (location[j+positionNew-1-3]==-1 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]==-1)
                             return false;
+                        if (j+positionNew-11-3>=0 && j+positionNew-11-3<50 && positionNew-1+j-3>(Math.floor(positionNew/10)*10) && positionNew-1+j-3<(Math.floor(positionNew/10)+1)*10-1){
+                            if (location[j+positionNew-11-3]==1 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]!=0)
+                                return false;
+                            else if (location[j+positionNew-11-3]==-1 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]==-1)
+                                return false;
+                        }
                     }
                     else if (mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]!=0)
                         return false;
@@ -242,6 +254,12 @@ public class StepsGame {
                             return false;
                         else if (location[j+positionNew+9-6]==-1 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]==-1)
                             return false;
+                        if (positionNew+9+j-6<39 && positionNew+9+j-6>(Math.floor(positionNew/10)+1)*10 && positionNew+9+j-6<(Math.floor(positionNew/10)+2)*10-1){
+                            if (location[j+positionNew+9-16]==1 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]!=0)
+                                return false;
+                            else if (location[j+positionNew+9-16]==-1 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]==-1)
+                                return false;
+                        }
                     }
                     else if (positionNew+9+j-6>=50 && mask[(int)piecePlacementNew.charAt(0)-65][(int)piecePlacementNew.charAt(1)-65][j]!=0)
                         return false;
