@@ -382,35 +382,43 @@ public class StepsGame {
      * @param objective A valid game objective, but not necessarily a valid placement string
      * @return An set of viable piece placements
      */
-    static ArrayList allcorrectpossible=new ArrayList();
-    static ArrayList x=new ArrayList();
+
     static Set<String> getViablePiecePlacements(String placement, String objective) {
         // FIXME Task 6: determine the correct order of piece placements
+        //EFBCFlAFnGFSBFqFGhHANDDP
+        allpossible.clear();
+        ArrayList allcorrectpossible=new ArrayList();
+        ArrayList x=new ArrayList();
         Set set=new HashSet();
         if(placement.equals("")){
-            for(int i=0;i<(objective.length()/3)-1;i++){
-                set.add(objective.substring(i*3,i*3+3));
+            permutation(objective,0,(objective.length()/3)-1);
+            for(int i=0;i<allpossible.size();i++){
+                if(isPlacementSequenceValid(allpossible.get(i).toString())){
+                    set.add(allpossible.get(i).toString().substring(0,3));
+                }
             }
-        }else{
-        permutation(objective,0,(objective.length()/3)-1);
-        for(int i=0;i<allpossible.size();i++){
-            if(isPlacementSequenceValid(allpossible.get(i).toString())){
-                allcorrectpossible.add(allpossible.get(i));
+        }else if(placement.equals(objective)){
+            return set;
+        }else {
+            permutation(objective,0,(objective.length()/3)-1);
+            for(int i=0;i<allpossible.size();i++){
+                if(isPlacementSequenceValid(allpossible.get(i).toString())){
+                    allcorrectpossible.add(allpossible.get(i));
+                }
             }
-        }
 
-        for(int i=0;i<allcorrectpossible.size()-1;i++){
-            String s1=allcorrectpossible.get(i).toString();
-            String s=s1.substring(0,placement.length());
-            if(s.equals(placement)){
-                set.add(s1.substring(placement.length(),placement.length()+3));
+            for(int i=0;i<allcorrectpossible.size()-1;i++){
+                String s1=allcorrectpossible.get(i).toString();
+                String s=s1.substring(0,placement.length());
+                if(s.equals(placement)){
+                    set.add(s1.substring(placement.length(),placement.length()+3));
+                }
             }
         }
-        }
-        System.out.println(set);
         return set;
     }
     static ArrayList allpossible=new ArrayList();
+
     public static void permutation(String string, int start, int end){
 
         if(start==end){
