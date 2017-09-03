@@ -11,10 +11,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import javafx.scene.shape.*;
 import javafx.scene.effect.*;
@@ -34,12 +38,16 @@ public class Viewer extends Application {
     //char orientations;
     //char locations;
     private String placement;
+    double orgSceneX;
+    double orgSceneY;
+    double orgTranslateX;
+    double orgTranslateY;
 
     /* board layout */
     private static final int SQUARE_SIZE = 60;
     private static final int PIECE_IMAGE_SIZE = (int) ((3*SQUARE_SIZE)*1.33);
-    private static final int VIEWER_WIDTH = 750;
-    private static final int VIEWER_HEIGHT = 500;
+    private static final int VIEWER_WIDTH = 1000;
+    private static final int VIEWER_HEIGHT = 700;
 
     private static final String URI_BASE = "assets/";
 
@@ -85,7 +93,7 @@ public class Viewer extends Application {
         controls.getChildren().add(hb);
     }
 
-    public void changePieces(Group pieces, char shapes, char orientations, char locations){
+    public void changePieces(Group root, char shapes, char orientations, char locations){
         //char shapes = piecesPlace.charAt(0);
         //char orientations = piecesPlace.charAt(1);
         //char locations = piecesPlace.charAt(2);
@@ -1207,6 +1215,695 @@ public class Viewer extends Application {
         root.getChildren().add(circle23);
         root.getChildren().add(circle24);
         root.getChildren().add(circle25);
+
+        Image imageAA=new Image("comp1110/ass2/gui/assets/AA.png");
+        ImageView imageViewAA=new ImageView(imageAA);
+        imageViewAA.setFitHeight(200);
+        imageViewAA.setFitWidth(200);
+        imageViewAA.setX(0);
+        imageViewAA.setY(325);
+        pieces.getChildren().add(imageViewAA);
+
+        Image imageAE=new Image("comp1110/ass2/gui/assets/AE.png");
+        ImageView imageViewAE=new ImageView(imageAE);
+        imageViewAE.setFitHeight(200);
+        imageViewAE.setFitWidth(200);
+        imageViewAE.setX(175);
+        imageViewAE.setY(325);
+        pieces.getChildren().add(imageViewAE);
+
+        Image imageBA=new Image("comp1110/ass2/gui/assets/BA.png");
+        ImageView imageViewBA=new ImageView(imageBA);
+        imageViewBA.setFitHeight(200);
+        imageViewBA.setFitWidth(200);
+        imageViewBA.setX(300);
+        imageViewBA.setY(325);
+        pieces.getChildren().add(imageViewBA);
+
+        Image imageBE=new Image("comp1110/ass2/gui/assets/BE.png");
+        ImageView imageViewBE=new ImageView(imageBE);
+        imageViewBE.setFitHeight(200);
+        imageViewBE.setFitWidth(200);
+        imageViewBE.setX(475);
+        imageViewBE.setY(325);
+        pieces.getChildren().add(imageViewBE);
+
+        Image imageCA=new Image("comp1110/ass2/gui/assets/CA.png");
+        ImageView imageViewCA=new ImageView(imageCA);
+        imageViewCA.setFitHeight(200);
+        imageViewCA.setFitWidth(200);
+        imageViewCA.setX(600);
+        imageViewCA.setY(325);
+        pieces.getChildren().add(imageViewCA);
+
+        Image imageCE=new Image("comp1110/ass2/gui/assets/CE.png");
+        ImageView imageViewCE=new ImageView(imageCE);
+        imageViewCE.setFitHeight(200);
+        imageViewCE.setFitWidth(200);
+        imageViewCE.setX(775);
+        imageViewCE.setY(325);
+        pieces.getChildren().add(imageViewCE);
+
+        Image imageDA=new Image("comp1110/ass2/gui/assets/DA.png");
+        ImageView imageViewDA=new ImageView(imageDA);
+        imageViewDA.setFitHeight(200);
+        imageViewDA.setFitWidth(200);
+        imageViewDA.setX(0);
+        imageViewDA.setY(475);
+        pieces.getChildren().add(imageViewDA);
+
+        Image imageDE=new Image("comp1110/ass2/gui/assets/DE.png");
+        ImageView imageViewDE=new ImageView(imageDE);
+        imageViewDE.setFitHeight(200);
+        imageViewDE.setFitWidth(200);
+        imageViewDE.setX(175);
+        imageViewDE.setY(475);
+        pieces.getChildren().add(imageViewDE);
+
+        Image imageEA=new Image("comp1110/ass2/gui/assets/EA.png");
+        ImageView imageViewEA=new ImageView(imageEA);
+        imageViewEA.setFitHeight(200);
+        imageViewEA.setFitWidth(200);
+        imageViewEA.setX(350);
+        imageViewEA.setY(500);
+        pieces.getChildren().add(imageViewEA);
+
+        Image imageEE=new Image("comp1110/ass2/gui/assets/EE.png");
+        ImageView imageViewEE=new ImageView(imageEE);
+        imageViewEE.setFitHeight(200);
+        imageViewEE.setFitWidth(200);
+        imageViewEE.setX(425);
+        imageViewEE.setY(500);
+        pieces.getChildren().add(imageViewEE);
+
+        Image imageFA=new Image("comp1110/ass2/gui/assets/FA.png");
+        ImageView imageViewFA=new ImageView(imageFA);
+        imageViewFA.setFitHeight(200);
+        imageViewFA.setFitWidth(200);
+        imageViewFA.setX(600);
+        imageViewFA.setY(500);
+        pieces.getChildren().add(imageViewFA);
+
+        Image imageFE=new Image("comp1110/ass2/gui/assets/FE.png");
+        ImageView imageViewFE=new ImageView(imageFE);
+        imageViewFE.setFitHeight(200);
+        imageViewFE.setFitWidth(200);
+        imageViewFE.setX(800);
+        imageViewFE.setY(500);
+        pieces.getChildren().add(imageViewFE);
+
+        Image imageGA=new Image("comp1110/ass2/gui/assets/GA.png");
+        ImageView imageViewGA=new ImageView(imageGA);
+        imageViewGA.setFitHeight(200);
+        imageViewGA.setFitWidth(200);
+        imageViewGA.setX(600);
+        imageViewGA.setY(-25);
+        pieces.getChildren().add(imageViewGA);
+
+        Image imageGE=new Image("comp1110/ass2/gui/assets/GE.png");
+        ImageView imageViewGE=new ImageView(imageGE);
+        imageViewGE.setFitHeight(200);
+        imageViewGE.setFitWidth(200);
+        imageViewGE.setX(775);
+        imageViewGE.setY(-25);
+        pieces.getChildren().add(imageViewGE);
+
+        Image imageHA=new Image("comp1110/ass2/gui/assets/HA.png");
+        ImageView imageViewHA=new ImageView(imageHA);
+        imageViewHA.setFitHeight(200);
+        imageViewHA.setFitWidth(200);
+        imageViewHA.setX(600);
+        imageViewHA.setY(150);
+        pieces.getChildren().add(imageViewHA);
+
+        Image imageHE=new Image("comp1110/ass2/gui/assets/HE.png");
+        ImageView imageViewHE=new ImageView(imageHE);
+        imageViewHE.setFitHeight(200);
+        imageViewHE.setFitWidth(200);
+        imageViewHE.setX(775);
+        imageViewHE.setY(150);
+        pieces.getChildren().add(imageViewHE);
+
+        imageViewAA.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewAA.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewAA.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewAA.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewAA.setRotate(360);
+                }
+            }
+        });
+        imageViewAE.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewAE.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewAE.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewAE.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewAE.setRotate(360);
+                }
+            }
+        });
+        imageViewBA.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewBA.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewBA.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewBA.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewBA.setRotate(360);
+                }
+            }
+        });
+        imageViewBE.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewBE.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewBE.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewBE.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewBE.setRotate(360);
+                }
+            }
+        });
+        imageViewCA.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewCA.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewCA.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewCA.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewCA.setRotate(360);
+                }
+            }
+        });
+        imageViewCE.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewCE.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewCE.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewCE.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewCE.setRotate(360);
+                }
+            }
+        });
+        imageViewDA.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewDA.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewDA.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewDA.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewDA.setRotate(360);
+                }
+            }
+        });
+        imageViewDE.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewDE.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewDE.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewDE.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewDE.setRotate(360);
+                }
+            }
+        });
+        imageViewEA.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewEA.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewEA.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewEA.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewEA.setRotate(360);
+                }
+            }
+        });
+        imageViewEE.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewEE.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewEE.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewEE.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewEE.setRotate(360);
+                }
+            }
+        });
+        imageViewFA.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewFA.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewFA.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewFA.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewFA.setRotate(360);
+                }
+            }
+        });
+        imageViewFE.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewFE.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewFE.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewFE.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewFE.setRotate(360);
+                }
+            }
+        });
+        imageViewGA.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewGA.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewGA.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewGA.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewGA.setRotate(360);
+                }
+            }
+        });
+        imageViewGE.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewGE.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewGE.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewGE.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewGE.setRotate(360);
+                }
+            }
+        });
+        imageViewHA.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewHA.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewHA.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewHA.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewHA.setRotate(360);
+                }
+            }
+        });
+        imageViewHE.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getClickCount()%5==2){
+                    imageViewHE.setRotate(90);
+                }else if(event.getClickCount()%5==3){
+                    imageViewHE.setRotate(180);
+                }else if(event.getClickCount()%5==4){
+                    imageViewHE.setRotate(270);
+                }else if(event.getClickCount()%5==0){
+                    imageViewHE.setRotate(360);
+                }
+            }
+        });
+        imageViewAA.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewAA.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewAE.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewAE.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewBA.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewBA.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewCA.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewCA.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewDA.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewDA.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewDE.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewDE.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewEA.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewEA.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewEE.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewEE.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewFA.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewFA.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewFE.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewFE.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewGA.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewGA.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewGE.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewGE.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewHA.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewHA.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewHE.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewHE.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewCE.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewCE.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
+        imageViewBE.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                orgSceneX=event.getSceneX();
+                orgSceneY=event.getSceneY();
+                orgTranslateX = ((ImageView)(event.getSource())).getTranslateX();
+                orgTranslateY = ((ImageView)(event.getSource())).getTranslateY();
+            }
+        });
+
+        imageViewBE.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double offsetX = event.getSceneX() - orgSceneX;
+                double offsetY = event.getSceneY() - orgSceneY;
+                double newTranslateX = orgTranslateX + offsetX;
+                double newTranslateY = orgTranslateY + offsetY;
+                ((ImageView)(event.getSource())).setTranslateX(newTranslateX);
+                ((ImageView)(event.getSource())).setTranslateY(newTranslateY);
+            }
+        });
 
 
         makeControls();

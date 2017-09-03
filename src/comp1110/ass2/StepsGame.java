@@ -1,5 +1,7 @@
 package comp1110.ass2;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -380,10 +382,64 @@ public class StepsGame {
      * @param objective A valid game objective, but not necessarily a valid placement string
      * @return An set of viable piece placements
      */
+    static ArrayList allcorrectpossible=new ArrayList();
+    static ArrayList x=new ArrayList();
     static Set<String> getViablePiecePlacements(String placement, String objective) {
         // FIXME Task 6: determine the correct order of piece placements
-        return null;
+        Set set=new HashSet();
+        if(placement.equals("")){
+            for(int i=0;i<(objective.length()/3)-1;i++){
+                set.add(objective.substring(i*3,i*3+3));
+            }
+        }else{
+        permutation(objective,0,(objective.length()/3)-1);
+        for(int i=0;i<allpossible.size();i++){
+            if(isPlacementSequenceValid(allpossible.get(i).toString())){
+                allcorrectpossible.add(allpossible.get(i));
+            }
+        }
+
+        for(int i=0;i<allcorrectpossible.size()-1;i++){
+            String s1=allcorrectpossible.get(i).toString();
+            String s=s1.substring(0,placement.length());
+            if(s.equals(placement)){
+                set.add(s1.substring(placement.length(),placement.length()+3));
+            }
+        }
+        }
+        System.out.println(set);
+        return set;
     }
+    static ArrayList allpossible=new ArrayList();
+    public static void permutation(String string, int start, int end){
+
+        if(start==end){
+            allpossible.add(string);
+
+        }else{
+            for(int i=start;i<=end;i++){
+                string=swap(string,start,i);
+                permutation(string,start+1,end);
+                string=swap(string,start,i);
+            }
+        }
+    }
+    private static String swap(String string, int x, int y){
+        String[] str=new String[string.length()/3];
+        for(int i=0;i<str.length;i++){
+            str[i]=string.substring(i*3,i*3+3);
+        }
+        String temp=str[x];
+        str[x]=str[y];
+        str[y]=temp;
+        String newstring="";
+        for(int i=0;i<str.length;i++){
+
+            newstring+=str[i];
+        }
+        return newstring;
+    }
+
 
     /**
      * Return an array of all solutions to the game, given a starting placement.
