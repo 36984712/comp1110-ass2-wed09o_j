@@ -286,6 +286,11 @@ public class StepsGame {
     static Set<String> getViablePiecePlacements(String placement, String objective) {
         // FIXME Task 6: determine the correct order of piece placements
         Set set=new HashSet();
+        if(placement.equals("")){
+            for(int i=0;i<(objective.length()/3)-1;i++){
+                set.add(objective.substring(i*3,i*3+3));
+            }
+        }else{
         permutation(objective,0,(objective.length()/3)-1);
         for(int i=0;i<allpossible.size();i++){
             if(isPlacementSequenceValid(allpossible.get(i).toString())){
@@ -293,14 +298,15 @@ public class StepsGame {
             }
         }
 
-        for(int i=0;i<allcorrectpossible.size();i++){
-            if(allcorrectpossible.get(i).toString().substring(0,placement.length()).equals(placement)){
-                x.add(allcorrectpossible.get(i).toString().substring(placement.length(),placement.length()+3));
+        for(int i=0;i<allcorrectpossible.size()-1;i++){
+            String s1=allcorrectpossible.get(i).toString();
+            String s=s1.substring(0,placement.length());
+            if(s.equals(placement)){
+                set.add(s1.substring(placement.length(),placement.length()+3));
             }
         }
-        System.out.println(x);
-
-
+        }
+        System.out.println(set);
         return set;
     }
     static ArrayList allpossible=new ArrayList();
