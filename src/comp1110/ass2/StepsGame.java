@@ -458,6 +458,76 @@ public class StepsGame {
      */
     static String[] getSolutions(String placement) {
         // FIXME Task 9: determine all solutions to the game, given a particular starting placement
-        return null;
+        allpossible.clear();
+
+        String a[] = new String[8];
+        String b[] = new String[8];
+        String c[] = new String[50];
+
+        ArrayList threech = new ArrayList();
+        String three = "";
+        for (int x = 0; x < 8; x++) {
+            a[x] = asciiToString(String.valueOf(65 + x));
+        }
+        for (int x = 0; x < 8; x++) {
+            b[x] = asciiToString(String.valueOf(65 + x));
+        }
+        for (int x = 0; x < 50; x++) {
+            if (x < 25) {
+                c[x] = asciiToString(String.valueOf(65 + x));
+            } else {
+                c[x] = asciiToString(String.valueOf(72 + x));
+            }
+        }
+        for (int x = 0; x < 8; x++) {
+            three += a[x].toString();
+            for (int y = 0; y < 8; y++) {
+                three += b[y].toString();
+                for (int z = 0; z < 50; z++) {
+                    three += c[z];
+                    threech.add(three);
+                    three = three.substring(0, 2);
+                }
+                three = three.substring(0, 1);
+            }
+            three = "";
+        }
+        int l=placement.length()/3;
+        int num=8-l;
+        ArrayList x=new ArrayList();
+        ArrayList y=new ArrayList();
+        x.add(placement);
+        for(int r=0;r<num;r++){
+            for(int i=0;i<x.size();i++){
+                placement=x.get(i).toString();
+                for(int m=0;m<3200;m++){
+                    placement+=threech.get(m).toString();
+                    if(isPlacementSequenceValid(placement)){
+                        y.add(placement);
+                    }
+                    placement=x.get(i).toString();
+                }
+            }
+            x.clear();
+            for(int n=0;n<y.size();n++){
+                x.add(y.get(n));
+            }
+            y.clear();
+        }
+        int le=x.size();
+        String ss[]=new String[le];
+
+        for(int i=0;i<le;i++){
+            ss[i]=x.get(i).toString();
+        }
+        return  ss;
+    }
+
+    public static String asciiToString(String value)
+    {
+        StringBuffer sbu = new StringBuffer();
+        String c = value;
+            sbu.append((char) Integer.parseInt(c));
+        return sbu.toString();
     }
 }
