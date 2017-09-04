@@ -382,71 +382,41 @@ public class StepsGame {
      * @param objective A valid game objective, but not necessarily a valid placement string
      * @return An set of viable piece placements
      */
-
     static Set<String> getViablePiecePlacements(String placement, String objective) {
         // FIXME Task 6: determine the correct order of piece placements
-        //EFBCFlAFnGFSBFqFGhHANDDP
-        allpossible.clear();
-        ArrayList allcorrectpossible=new ArrayList();
-        ArrayList x=new ArrayList();
-        Set set=new HashSet();
-        if(placement.equals("")){
-            permutation(objective,0,(objective.length()/3)-1);
-            for(int i=0;i<allpossible.size();i++){
-                if(isPlacementSequenceValid(allpossible.get(i).toString())){
-                    set.add(allpossible.get(i).toString().substring(0,3));
-                }
-            }
-        }else if(placement.equals(objective)){
-            return set;
-        }else {
-            permutation(objective,0,(objective.length()/3)-1);
-            for(int i=0;i<allpossible.size();i++){
-                if(isPlacementSequenceValid(allpossible.get(i).toString())){
-                    allcorrectpossible.add(allpossible.get(i));
-                }
-            }
+        Set<String> set = new HashSet<>();
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.clear();
+        set.clear();
 
-            for(int i=0;i<allcorrectpossible.size()-1;i++){
-                String s1=allcorrectpossible.get(i).toString();
-                String s=s1.substring(0,placement.length());
-                if(s.equals(placement)){
-                    set.add(s1.substring(placement.length(),placement.length()+3));
-                }
-            }
+        // put string objective into the arrayList, which is contain the string except placement
+        for (int i=0;i<objective.length()/3;i++){
+            // Select one of the piecePlacement in the objective
+            String piecePlacement = String.valueOf(objective.charAt(i*3))+String.valueOf(objective.charAt(i*3+1))+
+                    String.valueOf(objective.charAt(i*3+2));
+            if (placement.contains(piecePlacement))
+                continue;
+
+            arrayList.add(piecePlacement);
         }
+        // Loop to get next piece
+        for (int i=0;i<arrayList.size();i++){
+            if (!isPlacementSequenceValid(placement+arrayList.get(i)))
+                continue;
+            int count = 0;
+            for (int j=0;j<arrayList.size();j++){
+                if (i==j)
+                    continue;
+                if (isPlacementSequenceValid(arrayList.get(i)+arrayList.get(j)))
+                    count++;
+            }
+            if (count == arrayList.size()-1)
+                set.add(arrayList.get(i));
+        }
+
         return set;
     }
-    static ArrayList allpossible=new ArrayList();
 
-    public static void permutation(String string, int start, int end){
-
-        if(start==end){
-            allpossible.add(string);
-
-        }else{
-            for(int i=start;i<=end;i++){
-                string=swap(string,start,i);
-                permutation(string,start+1,end);
-                string=swap(string,start,i);
-            }
-        }
-    }
-    private static String swap(String string, int x, int y){
-        String[] str=new String[string.length()/3];
-        for(int i=0;i<str.length;i++){
-            str[i]=string.substring(i*3,i*3+3);
-        }
-        String temp=str[x];
-        str[x]=str[y];
-        str[y]=temp;
-        String newstring="";
-        for(int i=0;i<str.length;i++){
-
-            newstring+=str[i];
-        }
-        return newstring;
-    }
 
 
     /**
