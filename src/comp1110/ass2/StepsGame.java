@@ -428,69 +428,69 @@ public class StepsGame {
      */
     static String[] getSolutions(String placement) {
         // FIXME Task 9: determine all solutions to the game, given a particular starting placement
-        allpossible.clear();
+        //allpossible.clear();
 
-        String a[] = new String[8];
-        String b[] = new String[8];
-        String c[] = new String[50];
-
-        ArrayList threech = new ArrayList();
-        String three = "";
-        for (int x = 0; x < 8; x++) {
-            a[x] = asciiToString(String.valueOf(65 + x));
-        }
-        for (int x = 0; x < 8; x++) {
-            b[x] = asciiToString(String.valueOf(65 + x));
-        }
-        for (int x = 0; x < 50; x++) {
-            if (x < 25) {
-                c[x] = asciiToString(String.valueOf(65 + x));
-            } else {
-                c[x] = asciiToString(String.valueOf(72 + x));
-            }
-        }
-        for (int x = 0; x < 8; x++) {
-            three += a[x].toString();
-            for (int y = 0; y < 8; y++) {
-                three += b[y].toString();
-                for (int z = 0; z < 50; z++) {
-                    three += c[z];
-                    threech.add(three);
-                    three = three.substring(0, 2);
+        String[][] pieces = {
+                {"AAL" , "AAM" , "AAN" , "AAO" , "AAP" , "AAQ" , "AAR" , "AAS" , "AAV" , "AAW" , "AAX" , "AAY" , "AAa" , "AAb" , "AAc" , "AAd" , "AAg" , "AAh" , "AAi" , "AAj" , "AAk" , "AAl" , "AAm" , "AAn" , "ABL" , "ABM" , "ABN" , "ABO" , "ABP" , "ABQ" , "ABR" , "ABS" , "ABV" , "ABW" , "ABX" , "ABY" , "ABa" , "ABb" , "ABc" , "ABd" , "ABg" , "ABh" , "ABi" , "ABj" , "ABk" , "ABl" , "ABm" , "ABn" , "ACL" , "ACM" , "ACN" , "ACO" , "ACP" , "ACQ" , "ACR" , "ACS" , "ACV" , "ACW" , "ACX" , "ACY" , "ACa" , "ACb" , "ACc" , "ACd" , "ACg" , "ACh" , "ACi" , "ACj" , "ACk" , "ACl" , "ACm" , "ACn" , "ADL" , "ADM" , "ADN" , "ADO" , "ADP" , "ADQ" , "ADR" , "ADS" , "ADV" , "ADW" , "ADX" , "ADY" , "ADa" , "ADb" , "ADc" , "ADd" , "ADg" , "ADh" , "ADi" , "ADj" , "ADk" , "ADl" , "ADm" , "ADn" , "AEL" , "AEM" , "AEN" , "AEO" , "AEP" , "AEQ" , "AER" , "AES" , "AEV" , "AEW" , "AEX" , "AEY" , "AEa" , "AEb" , "AEc" , "AEd" , "AEg" , "AEh" , "AEi" , "AEj" , "AEk" , "AEl" , "AEm" , "AEn" , "AFL" , "AFM" , "AFN" , "AFO" , "AFP" , "AFQ" , "AFR" , "AFS" , "AFV" , "AFW" , "AFX" , "AFY" , "AFa" , "AFb" , "AFc" , "AFd" , "AFg" , "AFh" , "AFi" , "AFj" , "AFk" , "AFl" , "AFm" , "AFn" , "AGL" , "AGM" , "AGN" , "AGO" , "AGP" , "AGQ" , "AGR" , "AGS" , "AGV" , "AGW" , "AGX" , "AGY" , "AGa" , "AGb" , "AGc" , "AGd" , "AGg" , "AGh" , "AGi" , "AGj" , "AGk" , "AGl" , "AGm" , "AGn" , "AHL" , "AHM" , "AHN" , "AHO" , "AHP" , "AHQ" , "AHR" , "AHS" , "AHV" , "AHW" , "AHX" , "AHY" , "AHa" , "AHb" , "AHc" , "AHd" , "AHg" , "AHh" , "AHi" , "AHj" , "AHk" , "AHl" , "AHm" , "AHn"},
+                {"BAK" , "BAL" , "BAM" , "BAN" , "BAO" , "BAP" , "BAQ" , "BAR" , "BAS" , "BAU" , "BAV" , "BAW" , "BAX" , "BAY" , "BAa" , "BAb" , "BAc" , "BAd" , "BAf" , "BAg" , "BAh" , "BAi" , "BAj" , "BAk" , "BAl" , "BAm" , "BAn" , "BBB" , "BBC" , "BBD" , "BBE" , "BBF" , "BBG" , "BBH" , "BBI" , "BBL" , "BBM" , "BBN" , "BBO" , "BBP" , "BBQ" , "BBR" , "BBS" , "BBV" , "BBW" , "BBX" , "BBY" , "BBa" , "BBb" , "BBc" , "BBd" , "BBg" , "BBh" , "BBi" , "BBj" , "BBk" , "BBl" , "BBm" , "BBn" , "BCL" , "BCM" , "BCN" , "BCO" , "BCP" , "BCQ" , "BCR" , "BCS" , "BCT" , "BCV" , "BCW" , "BCX" , "BCY" , "BCa" , "BCb" , "BCc" , "BCd" , "BCe" , "BCg" , "BCh" , "BCi" , "BCj" , "BCk" , "BCl" , "BCm" , "BCn" , "BCo" , "BDL" , "BDM" , "BDN" , "BDO" , "BDP" , "BDQ" , "BDR" , "BDS" , "BDV" , "BDW" , "BDX" , "BDY" , "BDa" , "BDb" , "BDc" , "BDd" , "BDg" , "BDh" , "BDi" , "BDj" , "BDk" , "BDl" , "BDm" , "BDn" , "BDq" , "BDr" , "BDs" , "BDt" , "BDu" , "BDv" , "BDw" , "BDx" , "BEL" , "BEM" , "BEN" , "BEO" , "BEP" , "BEQ" , "BER" , "BES" , "BET" , "BEV" , "BEW" , "BEX" , "BEY" , "BEa" , "BEb" , "BEc" , "BEd" , "BEe" , "BEg" , "BEh" , "BEi" , "BEj" , "BEk" , "BEl" , "BEm" , "BEn" , "BEo" , "BFL" , "BFM" , "BFN" , "BFO" , "BFP" , "BFQ" , "BFR" , "BFS" , "BFV" , "BFW" , "BFX" , "BFY" , "BFa" , "BFb" , "BFc" , "BFd" , "BFg" , "BFh" , "BFi" , "BFj" , "BFk" , "BFl" , "BFm" , "BFn" , "BFq" , "BFr" , "BFs" , "BFt" , "BFu" , "BFv" , "BFw" , "BFx" , "BGK" , "BGL" , "BGM" , "BGN" , "BGO" , "BGP" , "BGQ" , "BGR" , "BGS" , "BGU" , "BGV" , "BGW" , "BGX" , "BGY" , "BGa" , "BGb" , "BGc" , "BGd" , "BGf" , "BGg" , "BGh" , "BGi" , "BGj" , "BGk" , "BGl" , "BGm" , "BGn" , "BHB" , "BHC" , "BHD" , "BHE" , "BHF" , "BHG" , "BHH" , "BHI" , "BHL" , "BHM" , "BHN" , "BHO" , "BHP" , "BHQ" , "BHR" , "BHS" , "BHV" , "BHW" , "BHX" , "BHY" , "BHa" , "BHb" , "BHc" , "BHd" , "BHg" , "BHh" , "BHi" , "BHj" , "BHk" , "BHl" , "BHm" , "BHn"},
+                {"CAL" , "CAM" , "CAN" , "CAO" , "CAP" , "CAQ" , "CAR" , "CAS" , "CAV" , "CAW" , "CAX" , "CAY" , "CAa" , "CAb" , "CAc" , "CAd" , "CAg" , "CAh" , "CAi" , "CAj" , "CAk" , "CAl" , "CAm" , "CAn" , "CBL" , "CBM" , "CBN" , "CBO" , "CBP" , "CBQ" , "CBR" , "CBS" , "CBV" , "CBW" , "CBX" , "CBY" , "CBa" , "CBb" , "CBc" , "CBd" , "CBg" , "CBh" , "CBi" , "CBj" , "CBk" , "CBl" , "CBm" , "CBn" , "CCL" , "CCM" , "CCN" , "CCO" , "CCP" , "CCQ" , "CCR" , "CCS" , "CCV" , "CCW" , "CCX" , "CCY" , "CCa" , "CCb" , "CCc" , "CCd" , "CCg" , "CCh" , "CCi" , "CCj" , "CCk" , "CCl" , "CCm" , "CCn" , "CDL" , "CDM" , "CDN" , "CDO" , "CDP" , "CDQ" , "CDR" , "CDS" , "CDV" , "CDW" , "CDX" , "CDY" , "CDa" , "CDb" , "CDc" , "CDd" , "CDg" , "CDh" , "CDi" , "CDj" , "CDk" , "CDl" , "CDm" , "CDn" , "CEL" , "CEM" , "CEN" , "CEO" , "CEP" , "CEQ" , "CER" , "CES" , "CEV" , "CEW" , "CEX" , "CEY" , "CEa" , "CEb" , "CEc" , "CEd" , "CEg" , "CEh" , "CEi" , "CEj" , "CEk" , "CEl" , "CEm" , "CEn" , "CFL" , "CFM" , "CFN" , "CFO" , "CFP" , "CFQ" , "CFR" , "CFS" , "CFV" , "CFW" , "CFX" , "CFY" , "CFa" , "CFb" , "CFc" , "CFd" , "CFg" , "CFh" , "CFi" , "CFj" , "CFk" , "CFl" , "CFm" , "CFn" , "CGL" , "CGM" , "CGN" , "CGO" , "CGP" , "CGQ" , "CGR" , "CGS" , "CGV" , "CGW" , "CGX" , "CGY" , "CGa" , "CGb" , "CGc" , "CGd" , "CGg" , "CGh" , "CGi" , "CGj" , "CGk" , "CGl" , "CGm" , "CGn" , "CHL" , "CHM" , "CHN" , "CHO" , "CHP" , "CHQ" , "CHR" , "CHS" , "CHV" , "CHW" , "CHX" , "CHY" , "CHa" , "CHb" , "CHc" , "CHd" , "CHg" , "CHh" , "CHi" , "CHj" , "CHk" , "CHl" , "CHm" , "CHn" },
+                {"DAL" , "DAM" , "DAN" , "DAO" , "DAP" , "DAQ" , "DAR" , "DAS" , "DAV" , "DAW" , "DAX" , "DAY" , "DAa" , "DAb" , "DAc" , "DAd" , "DAg" , "DAh" , "DAi" , "DAj" , "DAk" , "DAl" , "DAm" , "DAn" , "DBL" , "DBM" , "DBN" , "DBO" , "DBP" , "DBQ" , "DBR" , "DBS" , "DBV" , "DBW" , "DBX" , "DBY" , "DBa" , "DBb" , "DBc" , "DBd" , "DBg" , "DBh" , "DBi" , "DBj" , "DBk" , "DBl" , "DBm" , "DBn" , "DCL" , "DCM" , "DCN" , "DCO" , "DCP" , "DCQ" , "DCR" , "DCS" , "DCV" , "DCW" , "DCX" , "DCY" , "DCa" , "DCb" , "DCc" , "DCd" , "DCg" , "DCh" , "DCi" , "DCj" , "DCk" , "DCl" , "DCm" , "DCn" , "DDL" , "DDM" , "DDN" , "DDO" , "DDP" , "DDQ" , "DDR" , "DDS" , "DDV" , "DDW" , "DDX" , "DDY" , "DDa" , "DDb" , "DDc" , "DDd" , "DDg" , "DDh" , "DDi" , "DDj" , "DDk" , "DDl" , "DDm" , "DDn" , "DEL" , "DEM" , "DEN" , "DEO" , "DEP" , "DEQ" , "DER" , "DES" , "DEV" , "DEW" , "DEX" , "DEY" , "DEa" , "DEb" , "DEc" , "DEd" , "DEg" , "DEh" , "DEi" , "DEj" , "DEk" , "DEl" , "DEm" , "DEn" , "DFL" , "DFM" , "DFN" , "DFO" , "DFP" , "DFQ" , "DFR" , "DFS" , "DFV" , "DFW" , "DFX" , "DFY" , "DFa" , "DFb" , "DFc" , "DFd" , "DFg" , "DFh" , "DFi" , "DFj" , "DFk" , "DFl" , "DFm" , "DFn" , "DGL" , "DGM" , "DGN" , "DGO" , "DGP" , "DGQ" , "DGR" , "DGS" , "DGV" , "DGW" , "DGX" , "DGY" , "DGa" , "DGb" , "DGc" , "DGd" , "DGg" , "DGh" , "DGi" , "DGj" , "DGk" , "DGl" , "DGm" , "DGn" , "DHL" , "DHM" , "DHN" , "DHO" , "DHP" , "DHQ" , "DHR" , "DHS" , "DHV" , "DHW" , "DHX" , "DHY" , "DHa" , "DHb" , "DHc" , "DHd" , "DHg" , "DHh" , "DHi" , "DHj" , "DHk" , "DHl" , "DHm" , "DHn" },
+                {"EAL" , "EAM" , "EAN" , "EAO" , "EAP" , "EAQ" , "EAR" , "EAS" , "EAT" , "EAV" , "EAW" , "EAX" , "EAY" , "EAa" , "EAb" , "EAc" , "EAd" , "EAe" , "EAg" , "EAh" , "EAi" , "EAj" , "EAk" , "EAl" , "EAm" , "EAn" , "EAo" , "EBL" , "EBM" , "EBN" , "EBO" , "EBP" , "EBQ" , "EBR" , "EBS" , "EBV" , "EBW" , "EBX" , "EBY" , "EBa" , "EBb" , "EBc" , "EBd" , "EBg" , "EBh" , "EBi" , "EBj" , "EBk" , "EBl" , "EBm" , "EBn" , "EBq" , "EBr" , "EBs" , "EBt" , "EBu" , "EBv" , "EBw" , "EBx" , "ECK" , "ECL" , "ECM" , "ECN" , "ECO" , "ECP" , "ECQ" , "ECR" , "ECS" , "ECU" , "ECV" , "ECW" , "ECX" , "ECY" , "ECa" , "ECb" , "ECc" , "ECd" , "ECf" , "ECg" , "ECh" , "ECi" , "ECj" , "ECk" , "ECl" , "ECm" , "ECn" , "EDB" , "EDC" , "EDD" , "EDE" , "EDF" , "EDG" , "EDH" , "EDI" , "EDL" , "EDM" , "EDN" , "EDO" , "EDP" , "EDQ" , "EDR" , "EDS" , "EDV" , "EDW" , "EDX" , "EDY" , "EDa" , "EDb" , "EDc" , "EDd" , "EDg" , "EDh" , "EDi" , "EDj" , "EDk" , "EDl" , "EDm" , "EDn" , "EEK" , "EEL" , "EEM" , "EEN" , "EEO" , "EEP" , "EEQ" , "EER" , "EES" , "EEU" , "EEV" , "EEW" , "EEX" , "EEY" , "EEa" , "EEb" , "EEc" , "EEd" , "EEf" , "EEg" , "EEh" , "EEi" , "EEj" , "EEk" , "EEl" , "EEm" , "EEn" , "EFB" , "EFC" , "EFD" , "EFE" , "EFF" , "EFG" , "EFH" , "EFI" , "EFL" , "EFM" , "EFN" , "EFO" , "EFP" , "EFQ" , "EFR" , "EFS" , "EFV" , "EFW" , "EFX" , "EFY" , "EFa" , "EFb" , "EFc" , "EFd" , "EFg" , "EFh" , "EFi" , "EFj" , "EFk" , "EFl" , "EFm" , "EFn" , "EGL" , "EGM" , "EGN" , "EGO" , "EGP" , "EGQ" , "EGR" , "EGS" , "EGT" , "EGV" , "EGW" , "EGX" , "EGY" , "EGa" , "EGb" , "EGc" , "EGd" , "EGe" , "EGg" , "EGh" , "EGi" , "EGj" , "EGk" , "EGl" , "EGm" , "EGn" , "EGo" , "EHL" , "EHM" , "EHN" , "EHO" , "EHP" , "EHQ" , "EHR" , "EHS" , "EHV" , "EHW" , "EHX" , "EHY" , "EHa" , "EHb" , "EHc" , "EHd" , "EHg" , "EHh" , "EHi" , "EHj" , "EHk" , "EHl" , "EHm" , "EHn" , "EHq" , "EHr" , "EHs" , "EHt" , "EHu" , "EHv" , "EHw" , "EHx" },
+                {"FAL" , "FAM" , "FAN" , "FAO" , "FAP" , "FAQ" , "FAR" , "FAS" , "FAV" , "FAW" , "FAX" , "FAY" , "FAa" , "FAb" , "FAc" , "FAd" , "FAg" , "FAh" , "FAi" , "FAj" , "FAk" , "FAl" , "FAm" , "FAn" , "FBL" , "FBM" , "FBN" , "FBO" , "FBP" , "FBQ" , "FBR" , "FBS" , "FBV" , "FBW" , "FBX" , "FBY" , "FBa" , "FBb" , "FBc" , "FBd" , "FBg" , "FBh" , "FBi" , "FBj" , "FBk" , "FBl" , "FBm" , "FBn" , "FCL" , "FCM" , "FCN" , "FCO" , "FCP" , "FCQ" , "FCR" , "FCS" , "FCV" , "FCW" , "FCX" , "FCY" , "FCa" , "FCb" , "FCc" , "FCd" , "FCg" , "FCh" , "FCi" , "FCj" , "FCk" , "FCl" , "FCm" , "FCn" , "FDL" , "FDM" , "FDN" , "FDO" , "FDP" , "FDQ" , "FDR" , "FDS" , "FDV" , "FDW" , "FDX" , "FDY" , "FDa" , "FDb" , "FDc" , "FDd" , "FDg" , "FDh" , "FDi" , "FDj" , "FDk" , "FDl" , "FDm" , "FDn" , "FEL" , "FEM" , "FEN" , "FEO" , "FEP" , "FEQ" , "FER" , "FES" , "FEV" , "FEW" , "FEX" , "FEY" , "FEa" , "FEb" , "FEc" , "FEd" , "FEg" , "FEh" , "FEi" , "FEj" , "FEk" , "FEl" , "FEm" , "FEn" , "FFL" , "FFM" , "FFN" , "FFO" , "FFP" , "FFQ" , "FFR" , "FFS" , "FFV" , "FFW" , "FFX" , "FFY" , "FFa" , "FFb" , "FFc" , "FFd" , "FFg" , "FFh" , "FFi" , "FFj" , "FFk" , "FFl" , "FFm" , "FFn" , "FGL" , "FGM" , "FGN" , "FGO" , "FGP" , "FGQ" , "FGR" , "FGS" , "FGV" , "FGW" , "FGX" , "FGY" , "FGa" , "FGb" , "FGc" , "FGd" , "FGg" , "FGh" , "FGi" , "FGj" , "FGk" , "FGl" , "FGm" , "FGn" , "FHL" , "FHM" , "FHN" , "FHO" , "FHP" , "FHQ" , "FHR" , "FHS" , "FHV" , "FHW" , "FHX" , "FHY" , "FHa" , "FHb" , "FHc" , "FHd" , "FHg" , "FHh" , "FHi" , "FHj" , "FHk" , "FHl" , "FHm" , "FHn"},
+                {"GAL" , "GAM" , "GAN" , "GAO" , "GAP" , "GAQ" , "GAR" , "GAS" , "GAV" , "GAW" , "GAX" , "GAY" , "GAa" , "GAb" , "GAc" , "GAd" , "GAg" , "GAh" , "GAi" , "GAj" , "GAk" , "GAl" , "GAm" , "GAn" , "GBL" , "GBM" , "GBN" , "GBO" , "GBP" , "GBQ" , "GBR" , "GBS" , "GBV" , "GBW" , "GBX" , "GBY" , "GBa" , "GBb" , "GBc" , "GBd" , "GBg" , "GBh" , "GBi" , "GBj" , "GBk" , "GBl" , "GBm" , "GBn" , "GCL" , "GCM" , "GCN" , "GCO" , "GCP" , "GCQ" , "GCR" , "GCS" , "GCV" , "GCW" , "GCX" , "GCY" , "GCa" , "GCb" , "GCc" , "GCd" , "GCg" , "GCh" , "GCi" , "GCj" , "GCk" , "GCl" , "GCm" , "GCn" , "GDL" , "GDM" , "GDN" , "GDO" , "GDP" , "GDQ" , "GDR" , "GDS" , "GDV" , "GDW" , "GDX" , "GDY" , "GDa" , "GDb" , "GDc" , "GDd" , "GDg" , "GDh" , "GDi" , "GDj" , "GDk" , "GDl" , "GDm" , "GDn" , "GEL" , "GEM" , "GEN" , "GEO" , "GEP" , "GEQ" , "GER" , "GES" , "GEV" , "GEW" , "GEX" , "GEY" , "GEa" , "GEb" , "GEc" , "GEd" , "GEg" , "GEh" , "GEi" , "GEj" , "GEk" , "GEl" , "GEm" , "GEn" , "GFL" , "GFM" , "GFN" , "GFO" , "GFP" , "GFQ" , "GFR" , "GFS" , "GFV" , "GFW" , "GFX" , "GFY" , "GFa" , "GFb" , "GFc" , "GFd" , "GFg" , "GFh" , "GFi" , "GFj" , "GFk" , "GFl" , "GFm" , "GFn" , "GGL" , "GGM" , "GGN" , "GGO" , "GGP" , "GGQ" , "GGR" , "GGS" , "GGV" , "GGW" , "GGX" , "GGY" , "GGa" , "GGb" , "GGc" , "GGd" , "GGg" , "GGh" , "GGi" , "GGj" , "GGk" , "GGl" , "GGm" , "GGn" , "GHL" , "GHM" , "GHN" , "GHO" , "GHP" , "GHQ" , "GHR" , "GHS" , "GHV" , "GHW" , "GHX" , "GHY" , "GHa" , "GHb" , "GHc" , "GHd" , "GHg" , "GHh" , "GHi" , "GHj" , "GHk" , "GHl" , "GHm" , "GHn"},
+                {"HAL" , "HAM" , "HAN" , "HAO" , "HAP" , "HAQ" , "HAR" , "HAS" , "HAV" , "HAW" , "HAX" , "HAY" , "HAa" , "HAb" , "HAc" , "HAd" , "HAg" , "HAh" , "HAi" , "HAj" , "HAk" , "HAl" , "HAm" , "HAn" , "HBL" , "HBM" , "HBN" , "HBO" , "HBP" , "HBQ" , "HBR" , "HBS" , "HBV" , "HBW" , "HBX" , "HBY" , "HBa" , "HBb" , "HBc" , "HBd" , "HBg" , "HBh" , "HBi" , "HBj" , "HBk" , "HBl" , "HBm" , "HBn" , "HCL" , "HCM" , "HCN" , "HCO" , "HCP" , "HCQ" , "HCR" , "HCS" , "HCV" , "HCW" , "HCX" , "HCY" , "HCa" , "HCb" , "HCc" , "HCd" , "HCg" , "HCh" , "HCi" , "HCj" , "HCk" , "HCl" , "HCm" , "HCn" , "HDL" , "HDM" , "HDN" , "HDO" , "HDP" , "HDQ" , "HDR" , "HDS" , "HDV" , "HDW" , "HDX" , "HDY" , "HDa" , "HDb" , "HDc" , "HDd" , "HDg" , "HDh" , "HDi" , "HDj" , "HDk" , "HDl" , "HDm" , "HDn" , "HEL" , "HEM" , "HEN" , "HEO" , "HEP" , "HEQ" , "HER" , "HES" , "HEV" , "HEW" , "HEX" , "HEY" , "HEa" , "HEb" , "HEc" , "HEd" , "HEg" , "HEh" , "HEi" , "HEj" , "HEk" , "HEl" , "HEm" , "HEn" , "HFL" , "HFM" , "HFN" , "HFO" , "HFP" , "HFQ" , "HFR" , "HFS" , "HFV" , "HFW" , "HFX" , "HFY" , "HFa" , "HFb" , "HFc" , "HFd" , "HFg" , "HFh" , "HFi" , "HFj" , "HFk" , "HFl" , "HFm" , "HFn" , "HGL" , "HGM" , "HGN" , "HGO" , "HGP" , "HGQ" , "HGR" , "HGS" , "HGV" , "HGW" , "HGX" , "HGY" , "HGa" , "HGb" , "HGc" , "HGd" , "HGg" , "HGh" , "HGi" , "HGj" , "HGk" , "HGl" , "HGm" , "HGn" , "HHL" , "HHM" , "HHN" , "HHO" , "HHP" , "HHQ" , "HHR" , "HHS" , "HHV" , "HHW" , "HHX" , "HHY" , "HHa" , "HHb" , "HHc" , "HHd" , "HHg" , "HHh" , "HHi" , "HHj" , "HHk" , "HHl" , "HHm" , "HHn"}
+        };
+        int[] flag = {0,0,0,0,0,0,0,0};
+        if (placement != ""){
+            for (int i = 0; i < placement.length()/3; i++){
+                switch (placement.charAt(i*3)){
+                    case 'A': flag[0] = 1;break;
+                    case 'B': flag[1] = 1;break;
+                    case 'C': flag[2] = 1;break;
+                    case 'D': flag[3] = 1;break;
+                    case 'E': flag[4] = 1;break;
+                    case 'F': flag[5] = 1;break;
+                    case 'G': flag[6] = 1;break;
+                    case 'H': flag[7] = 1;break;
                 }
-                three = three.substring(0, 1);
             }
-            three = "";
         }
+
         int l=placement.length()/3;
         int num=8-l;
         ArrayList x=new ArrayList();
         ArrayList y=new ArrayList();
         x.add(placement);
         for(int r=0;r<num;r++){
+            int[] flagu = flag.clone();
             for(int i=0;i<x.size();i++){
-                placement=x.get(i).toString();
-                for(int m=0;m<3200;m++){
-                    placement+=threech.get(m).toString();
-                    if(isPlacementSequenceValid(placement)){
-                        y.add(placement);
+                placement = x.get(i).toString();
+                for(int m = 0; m < 8; m++){
+                    if (flagu[m] == 1) continue;
+                    for (int n = 0;n < pieces[m].length; n++){
+                        placement += pieces[m][n];
+                        if(isPlacementSequenceValid(placement)){
+                            y.add(placement);
+                        }
                     }
                     placement=x.get(i).toString();
                 }
             }
             x.clear();
-            for(int n=0;n<y.size();n++){
+            for(int n = 0; n < y.size(); n++){
                 x.add(y.get(n));
             }
             y.clear();
         }
-        int le=x.size();
-        String ss[]=new String[le];
 
-        for(int i=0;i<le;i++){
-            ss[i]=x.get(i).toString();
+        int le = x.size();
+        String ss[] = new String[le];
+
+        for(int i = 0;i<le;i++){
+            ss[i] = x.get(i).toString();
         }
-        return  ss;
+
+        return ss;
     }
 
     public static String asciiToString(String value)
